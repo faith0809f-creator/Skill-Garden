@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Skill Garden</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>🌱 Skill Garden</h1>
+
+    <p>
+        Learn, answer questions and grow your garden!
+    </p>
+
+    <div class="resources">
+
+        <span>
+            ⭐ <b id="headerStars">0</b>
+        </span>
+
+        <span>
+            🌱 <b id="headerSeeds">0</b>
+        </span>
+
+        <span>
+            🪨 <b id="headerSoil">0</b>
+        </span>
+
+    </div>
+
+    <nav>
+
+        <button onclick="goHome()">
+            🏡 Home
+        </button>
+
+        <button onclick="openQuizMenu()">
+            🧠 Quiz
+        </button>
+
+        <button onclick="openGarden()">
+            🌷 Garden
+        </button>
+
+        <button onclick="openShop()">
+            🛒 Shop
+        </button>
+
+        <button onclick="openAreas()">
+            🗺️ Areas
+        </button>
+
+        <button onclick="openLevelPage()">
+            🎓 Level
+        </button>
+
+        <button
+            class="reset-btn"
+            onclick="resetGame()"
+        >
+            🔄 Reset
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- LEVEL PAGE -->
+
+<section
+    id="levelPage"
+    class="page hidden"
+>
+
+    <div class="card centre">
+
+        <h2>
+            🎓 Choose Your Level
+        </h2>
+
+        <p>
+            Changing your level does not reset your garden.
+        </p>
+
+    </div>
+
+
+    <div class="level-grid">
+
+        <button onclick="selectLevel('Kindergarten')">
+            🌸 Kindergarten
+        </button>
+
+        <button onclick="selectLevel('P1')">
+            🌱 Primary 1
+        </button>
+
+        <button onclick="selectLevel('P2')">
+            🌱 Primary 2
+        </button>
+
+        <button onclick="selectLevel('P3')">
+            🌱 Primary 3
+        </button>
+
+        <button onclick="selectLevel('P4')">
+            🌿 Primary 4
+        </button>
+
+        <button onclick="selectLevel('P5')">
+            🌿 Primary 5
+        </button>
+
+        <button onclick="selectLevel('P6')">
+            🌳 Primary 6
+        </button>
+
+        <button onclick="selectLevel('S1')">
+            🎓 Secondary 1
+        </button>
+
+        <button onclick="selectLevel('S2')">
+            🎓 Secondary 2
+        </button>
+
+        <button onclick="selectLevel('S3')">
+            🎓 Secondary 3
+        </button>
+
+        <button onclick="selectLevel('S4')">
+            🎓 Secondary 4
+        </button>
+
+        <button onclick="selectLevel('Advanced')">
+            🚀 Pre-University
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- HOME -->
+
+<section
+    id="homePage"
+    class="page hidden"
+>
+
+    <div class="home-grid">
+
+
+        <div class="card centre">
+
+            <div
+                id="homePlant"
+                class="plant"
+            >
+                🌱
+            </div>
+
+            <h2 id="plantStage">
+                Little Seedling
+            </h2>
+
+            <p id="growthText">
+                0 / 5 correct
+            </p>
+
+            <div class="progress">
+
+                <div
+                    id="growthBar"
+                    class="progress-fill"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                🌼 My Garden
+            </h2>
+
+            <p>
+                🎓 Level:
+                <b id="homeLevel">-</b>
+            </p>
+
+            <p>
+                ⭐ Points:
+                <b id="homeStars">0</b>
+            </p>
+
+            <p>
+                🌱 Seeds:
+                <b id="homeSeeds">0</b>
+            </p>
+
+            <p>
+                🪨 Soil:
+                <b id="homeSoil">0</b>
+            </p>
+
+            <p>
+                🗺️ Area:
+                <b id="homeArea">
+                    Starter Garden
+                </b>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <h2>
+        🌿 Choose an activity
+    </h2>
+
+
+    <div class="action-grid">
+
+        <button onclick="openQuizMenu()">
+
+            <span>🧠</span>
+
+            Quiz
+
+        </button>
+
+        <button onclick="openGarden()">
+
+            <span>🌷</span>
+
+            Garden
+
+        </button>
+
+        <button onclick="openShop()">
+
+            <span>🛒</span>
+
+            Shop
+
+        </button>
+
+        <button onclick="openAreas()">
+
+            <span>🗺️</span>
+
+            Areas
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- SUBJECT PAGE -->
+
+<section
+    id="subjectPage"
+    class="page hidden"
+>
+
+    <button
+        class="back"
+        onclick="goHome()"
+    >
+        ← Home
+    </button>
+
+    <h2 id="selectedLevelTitle">
+        Choose a subject
+    </h2>
+
+    <div
+        id="subjectButtons"
+        class="subject-grid"
+    ></div>
+
+</section>
+
+
+<!-- QUIZ -->
+
+<section
+    id="quizPage"
+    class="page hidden"
+>
+
+    <div class="quiz-top">
+
+        <button
+            class="back"
+            onclick="openQuizMenu()"
+        >
+            ← Subjects
+        </button>
+
+        <div class="quiz-label">
+            🧠 Quiz Time
+        </div>
+
+    </div>
+
+
+    <div class="quiz-card">
+
+        <div
+            id="questionDifficulty"
+            class="difficulty"
+        ></div>
+
+        <h2 id="questionText">
+            Question
+        </h2>
+
+        <div
+            id="answerButtons"
+            class="answer-grid"
+        ></div>
+
+        <p id="feedback"></p>
+
+    </div>
+
+</section>
+
+
+<!-- RESULT -->
+
+<section
+    id="resultPage"
+    class="page hidden"
+>
+
+    <div class="card centre">
+
+        <h2>
+            🎉 Great Work!
+        </h2>
+
+        <p id="resultText"></p>
+
+        <div
+            id="resultPlant"
+            class="plant"
+        >
+            🌱
+        </div>
+
+        <button onclick="openQuizMenu()">
+            📚 Another Quiz
+        </button>
+
+        <button onclick="openGarden()">
+            🌷 Garden
+        </button>
+
+        <button onclick="goHome()">
+            🏡 Home
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- GARDEN -->
+
+<section
+    id="gardenPage"
+    class="page hidden"
+>
+
+    <button
+        class="back"
+        onclick="goHome()"
+    >
+        ← Home
+    </button>
+
+
+    <div class="garden-heading">
+
+        <div>
+
+            <h2 id="currentAreaTitle">
+                🌷 Starter Garden
+            </h2>
+
+            <p>
+                Your special garden space
+            </p>
+
+        </div>
+
+
+        <button onclick="openAreas()">
+            🗺️ Change Area
+        </button>
+
+    </div>
+
+
+    <div
+        id="gardenScene"
+        class="garden-scene starter-theme"
+    >
+
+        <div class="lights">
+            ✨　✨　✨　✨　✨
+        </div>
+
+
+        <div class="window">
+
+            <div class="sky">
+
+                <span class="sun">
+                    ☀️
+                </span>
+
+                <span class="cloud cloud1">
+                    ☁️
+                </span>
+
+                <span class="cloud cloud2">
+                    ☁️
+                </span>
+
+            </div>
+
+            <div class="window-v"></div>
+
+            <div class="window-h"></div>
+
+        </div>
+
+
+        <div class="vine vine1">
+            🌿
+        </div>
+
+        <div class="vine vine2">
+            🌿
+        </div>
+
+
+        <div class="shelf">
+            🪴 📚 🌵
+        </div>
+
+
+        <div class="room-table">
+            ☕ 📖
+        </div>
+
+
+        <div class="rug">
+            🌼 🌸 🌼
+        </div>
+
+
+        <div
+            id="gardenObjects"
+            class="garden-objects"
+        ></div>
+
+    </div>
+
+</section>
+
+
+<!-- AREAS -->
+
+<section
+    id="areasPage"
+    class="page hidden"
+>
+
+    <button
+        class="back"
+        onclick="goHome()"
+    >
+        ← Home
+    </button>
+
+    <h2>
+        🗺️ Garden Areas
+    </h2>
+
+    <div
+        id="areaList"
+        class="area-grid"
+    ></div>
+
+    <p
+        id="areaMessage"
+        class="message"
+    ></p>
+
+</section>
+
+
+<!-- SHOP -->
+
+<section
+    id="shopPage"
+    class="page hidden"
+>
+
+    <button
+        class="back"
+        onclick="goHome()"
+    >
+        ← Home
+    </button>
+
+
+    <div class="card">
+
+        <h2>
+            🛒 Garden Shop
+        </h2>
+
+
+        <div class="shop-resources">
+
+            <span>
+                ⭐ <b id="shopStars">0</b>
+            </span>
+
+            <span>
+                🌱 <b id="shopSeeds">0</b>
+            </span>
+
+            <span>
+                🪨 <b id="shopSoil">0</b>
+            </span>
+
+        </div>
+
+
+        <h2>
+            🌷 Decorations
+        </h2>
+
+        <div
+            id="decorationShop"
+            class="shop-grid"
+        ></div>
+
+
+        <h2>
+            🎁 Packs
+        </h2>
+
+        <div
+            id="packShop"
+            class="shop-grid"
+        ></div>
+
+
+        <p
+            id="shopMessage"
+            class="message"
+        ></p>
+
+    </div>
+
+</section>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
